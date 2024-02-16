@@ -78,5 +78,22 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+// a route to handle "About US" page
+app.get('/aboutus', async (req, res) => {
+  try {
+    const aboutUs = {
+      name: "Betty Li",
+      bio: "Hi everyone, I'm Betty Li. I'm a senior studying computer science and biology major at CAS.\nI like spending time in the nature and I enjoy exploring different restaurants in the city.",
+      photoURL: `https://awsbuckbetty.s3.us-east-2.amazonaws.com/photo.jpg`
+    }
+    res.json(aboutUs)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({
+      error: err,
+      status: 'failed to retrieve About Us information'
+    })
+  }
+})
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
